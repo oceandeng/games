@@ -1,7 +1,0 @@
-{
-  "name": "game",
-  "private": true,
-  "dependencies": {
-    "zepto": "~1.1.6"
-  }
-}
