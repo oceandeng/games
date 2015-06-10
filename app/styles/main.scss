@@ -1,7 +1,152 @@
+/* ==========================================================================
+ *    CONTENTS
+ *
+ *    SETTINGS
+ *        variables............................变量集中存储文件
+ *        mixin................................mixin集中存储文件
+ *
+ *    TOOLS
+ *
+ *    COMPONENTS
+ *        reset................................compass内置浏览器重置样式文件
+ *
+ *    BUSINESS
+ *
+ *    BASE
+ *        screen.scss..........................针对当前站点主页样式的修饰
+ * 
+   ========================================================================== */
+
 @import 'compass/css3';
 
-$icon-font-path: "fonts/";
+@import "varialbes", "mixin";
 
-/* ==========================================================================
-   Browse Happy prompt
-   ========================================================================== */
+// @import "compass/reset";
+@import "compass/reset/utilities";
+@include global-reset;
+
+@import "normalize-version";
+/* 分割线1 */
+@import "normalize/base";
+/* 分割线2 */
+@import "normalize/html5";
+/* 分割线3 */
+@import "normalize/links";
+
+
+@import "compass/layout";
+
+// @import "compass/layout/grid-background";
+// @import "compass/layout/sticky-footer";
+// @import "compass/layout/stretching";
+
+@import "compass/css3";
+@import "compass/support";
+@import "compass/typography/links";
+@import "compass/typography/lists";
+
+// @import "compass/typography";
+
+@debug browsers();
+
+// $supported-browsers: chrome;
+// $browser-minimum-versions: ("ie": "8");
+
+div{
+    // appearance: button;
+
+    @include appearance("button");
+}
+
+.test-inline-block{
+    @include inline-block();
+}
+
+.test-opacity{
+    @include opacity(.7);
+}
+
+// $grid-background-column-color : rgba(255, 0, 0, .25);
+// #root{
+    // @include grid-background();
+// }
+
+.headline{
+    font-family: $headline-ff;
+}
+
+.main-sec{
+    font-family: $main-sec-ff;
+    @at-root{
+        .main-sec-headline{
+            font:{
+                family: $main-sec-ff;
+                size:16px;
+            }
+        }
+
+        .main-sec-detaile{
+            font-size:12px;
+        }    
+    }
+}
+
+a{
+    &:hover{
+        color:blue;
+    }
+}
+
+p {
+    color: hsl(270, 100%, 50%);
+}
+
+.webdemo-sec{
+    @include col-sm();
+    @include box-shadow(1px 1px 3px 2px #cfcecf);
+
+    &:hover{
+        background-color: #f5f5f5;
+    }
+}
+
+// .error.instrusion{
+//     background: url("../images/hacked.png");
+// }
+
+%error{
+    color: red;
+}
+
+.serious-error{
+    @extend %error;
+    border:1px solid red;
+}
+
+@include sticky-footer(30px);
+
+a{
+    // @include hover-link();
+    // @include link-colors(#00c, #0cc, #c0c, #cc0, #c00);
+    // @include unstyled-link();
+}
+
+.list-unstyled{
+    @include no-bullets();
+}
+
+.list-unstyled-li{
+    @include no-bullet();
+}
+
+.list-inline{
+    @include inline-list();
+}
+
+.list-horizontal{
+    @include horizontal-list(0, right);
+}
+
+.list-inline-block{
+    @include inline-block-list(7px);
+}
