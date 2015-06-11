@@ -4,6 +4,7 @@ var gWidth,
 	ctx;
 
 var moneyBagPic = new Image();
+var moneyBagPicT = new Image();
 var moneyPic = new Image();
 
 var	mBagTop,
@@ -12,9 +13,12 @@ var	mBagTop,
 	mBagHeight;
 
 var startX,
-	startY;
+	startY,
+	switchy = false;
 
 var timer = 0;
+
+var money;
 
 function init(){
 	canvas = document.querySelector('#canvas');
@@ -26,6 +30,7 @@ function init(){
 	canvas.width = gWidth;
 	canvas.height = gHeight;
 
+	moneyBagPicT.src = 'media/game/moneybagt.png';
 	moneyBagPic.src = 'media/game/moneybag.png';
 	moneyPic.src = 'media/game/money.png';
 
@@ -39,6 +44,8 @@ function init(){
 	$(document).on('touchend', function(e){touchendfn(e)});
 
 	moneyBagPic.onload = function(){
+		money = new moneyObj();
+		money.init();
 		gameLoop();
 	}
 }
@@ -47,6 +54,9 @@ function gameLoop(){
 	window.requestAnimFrame(gameLoop);
 
 	fillCanvas();
+
+	drawMoneyBagT();
+	drawMoney();
 	drawMoneyBag();
 }
 
@@ -56,7 +66,11 @@ function fillCanvas(){
 }
 
 function drawMoneyBag(){
-		ctx.drawImage(moneyBagPic, mBagLeft, mBagTop, mBagWidth, mBagHeight);
+	ctx.drawImage(moneyBagPic, mBagLeft, mBagTop, mBagWidth, mBagHeight);
+}
+
+function drawMoneyBagT(){
+	ctx.drawImage(moneyBagPicT, mBagLeft, mBagTop, mBagWidth, mBagHeight);
 }
 
 function touchstartfn(event){
@@ -66,7 +80,6 @@ function touchstartfn(event){
 
 	startX = x;
 	startY = y;
-	// alert(touch.pageX + '--------' + touch.pageY);
 }
 
 function preventmove(event){
@@ -79,20 +92,17 @@ function preventmove(event){
 	if(startY - y > 100){
 		timer = setTimeout(function(){
 			if(timer){
-				alert('a');
-				
+				switchy = true;
 			}
 			timer = 0;
 		}
-		, 500);
+		, 100);
 	}
 }
 
 function touchendfn(event){
 	console.log(startX + '--------------' + startY);
 }
-
-
 
 $(document).ready(function(){
 	init();
