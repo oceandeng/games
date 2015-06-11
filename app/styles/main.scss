@@ -8,73 +8,33 @@
  *    TOOLS
  *
  *    COMPONENTS
- *        reset................................compass内置浏览器重置样式文件
+ *        normalize................................compass内置浏览器重置样式文件
  *
  *    BUSINESS
  *
  *    BASE
- *        screen.scss..........................针对当前站点主页样式的修饰
+ *        main.scss..........................针对当前站点主页样式的修饰
  * 
    ========================================================================== */
 
-@import 'compass/css3';
-
-@import "varialbes", "mixin";
-
-// @import "compass/reset";
-@import "compass/reset/utilities";
-@include global-reset;
-
 @import "normalize-version";
-/* 分割线1 */
 @import "normalize/base";
-/* 分割线2 */
 @import "normalize/html5";
-/* 分割线3 */
 @import "normalize/links";
-
-
 @import "compass/layout";
-
-// @import "compass/layout/grid-background";
-// @import "compass/layout/sticky-footer";
-// @import "compass/layout/stretching";
-
 @import "compass/css3";
 @import "compass/support";
 @import "compass/typography/links";
 @import "compass/typography/lists";
+@import "varialbes", "mixin";
 
-// @import "compass/typography";
-
-@debug browsers();
-
-// $supported-browsers: chrome;
-// $browser-minimum-versions: ("ie": "8");
-
-div{
-    // appearance: button;
-
-    @include appearance("button");
+html,body{
+    overflow: hidden
 }
 
-.test-inline-block{
-    @include inline-block();
+body{
+	font-family: $body-ff;
 }
-
-.test-opacity{
-    @include opacity(.7);
-}
-
-// $grid-background-column-color : rgba(255, 0, 0, .25);
-// #root{
-    // @include grid-background();
-// }
-
-.headline{
-    font-family: $headline-ff;
-}
-
 .main-sec{
     font-family: $main-sec-ff;
     @at-root{
@@ -87,7 +47,7 @@ div{
 
         .main-sec-detaile{
             font-size:12px;
-        }    
+        }
     }
 }
 
@@ -109,10 +69,6 @@ p {
         background-color: #f5f5f5;
     }
 }
-
-// .error.instrusion{
-//     background: url("../images/hacked.png");
-// }
 
 %error{
     color: red;

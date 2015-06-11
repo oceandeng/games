@@ -1,85 +1,98 @@
-var can;
-var ctx;
+var gWidth,
+	gHeight,
+	canvas,
+	ctx;
 
-var w;
-var h;
+var moneyBagPic = new Image();
+var moneyPic = new Image();
 
-var padLeft = 100;
-var padTop = 100;
+var	mBagTop,
+	mBagLeft,
+	mBagWidth,
+	mBagHeight;
 
-var girlWidth = 600;
-var girlHeight = 300;
+var startX,
+	startY;
 
-var deltaTime;
-var lastTime;
+var timer = 0;
 
-var girlPic = new Image();
-var starPic = new Image();
+function init(){
+	canvas = document.querySelector('#canvas');
+	ctx = canvas.getContext('2d');
 
-var stars = [];
-var num = 30;
+	gWidth = document.body.clientWidth;
+	gHeight = document.body.clientHeight;
 
-var alive = 0;
+	canvas.width = gWidth;
+	canvas.height = gHeight;
 
-var switchy = false;
+	moneyBagPic.src = 'media/game/moneybag.png';
+	moneyPic.src = 'media/game/money.png';
 
-function init() {
-	can = document.getElementById("canvas");
-	ctx = can.getContext("2d");
+	mBagWidth = parseInt(gWidth * 0.6);
+	mBagHeight = parseInt(mBagWidth / (378 / 449));
+	mBagTop = gHeight - mBagHeight;
+	mBagLeft = (gWidth - mBagWidth) / 2;
 
-	w = can.width;
-	h = can.height;
+	$(document).on('touchstart', function(e){touchstartfn(e)});
+	$(document).on('touchmove', function(e){preventmove(e)});
+	$(document).on('touchend', function(e){touchendfn(e)});
 
-	document.addEventListener('mousemove', mousemove, false);
-
-	girlPic.src = "media/game/girl.jpg";
-	starPic.src = "media/game/star.png";
-
-	for (var i = 0; i < num; i++){
-		stars[i] = new starObj();
-		stars[i].init();
+	moneyBagPic.onload = function(){
+		gameLoop();
 	}
-
-	lastTime = Date.now();
-	gameLoop();
 }
 
-function gameLoop() {
+function gameLoop(){
 	window.requestAnimFrame(gameLoop);
-	var now = Date.now();
-	deltaTime = now - lastTime;
-	lastTime = now;
 
 	fillCanvas();
-	drawGirl();
-
-	drawStars();
-
-	aliveUpdate();
+	drawMoneyBag();
 }
 
 function fillCanvas(){
-	ctx.fillStyle = "#393550";
-	ctx.fillRect(0, 0, w, h);
+	ctx.fillStyle = '#d42c2b';
+	ctx.fillRect(0, 0, gWidth, gHeight);
 }
 
-function drawGirl(){
-	ctx.drawImage(girlPic, padLeft, padTop, girlWidth, girlHeight);
+function drawMoneyBag(){
+		ctx.drawImage(moneyBagPic, mBagLeft, mBagTop, mBagWidth, mBagHeight);
 }
 
-function mousemove(e){
-	if (e.offsetX || e.layerX){
+function touchstartfn(event){
+	var touch = event.touches[0];
+	var x = parseInt(touch.pageX);
+	var y = parseInt(touch.pageY);
 
-		var px = e.offsetX == undefined ? e.layerX : e.offsetX;
-		var py = e.offsetY == undefined ? e.layerY : e.offsetY;
+	startX = x;
+	startY = y;
+	// alert(touch.pageX + '--------' + touch.pageY);
+}
 
-		if (px > padLeft && px < (padLeft + girlWidth) && py > padTop && py < (padTop + girlHeight)) {
-			switchy = true;
-		} else {
-			switchy = false;
+function preventmove(event){
+	event.preventDefault();
+
+	var touch = event.touches[0];
+	var x = parseInt(touch.pageX);
+	var y = parseInt(touch.pageY);
+
+	if(startY - y > 100){
+		timer = setTimeout(function(){
+			if(timer){
+				alert('a');
+				
+			}
+			timer = 0;
 		}
+		, 500);
 	}
 }
+
+function touchendfn(event){
+	console.log(startX + '--------------' + startY);
+}
+
+
 
 $(document).ready(function(){
 	init();
