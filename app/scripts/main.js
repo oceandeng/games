@@ -16,9 +16,12 @@ var startX,
 	startY,
 	switchy = false;
 
-var timer = 0;
+var timer = 0,
+	lastTime,
+	deltaTime;
 
-var money;
+var money = [];
+var num = 10;
 
 function init(){
 	canvas = document.querySelector('#canvas');
@@ -44,14 +47,21 @@ function init(){
 	$(document).on('touchend', function(e){touchendfn(e)});
 
 	moneyBagPic.onload = function(){
-		money = new moneyObj();
-		money.init();
+		for(var i = 0; i < num; i++){
+			money.push(new moneyObj());
+			money[i].init();
+		}
+
+		lastTime = Date.now();
 		gameLoop();
 	}
 }
 
 function gameLoop(){
 	window.requestAnimFrame(gameLoop);
+	var now = Date.now();
+	deltaTime = now - lastTime;
+	lastTime = now;
 
 	fillCanvas();
 
@@ -61,7 +71,8 @@ function gameLoop(){
 }
 
 function fillCanvas(){
-	ctx.fillStyle = '#d42c2b';
+	// ctx.fillStyle = '#d42c2b';
+	ctx.fillStyle = '#ccc';
 	ctx.fillRect(0, 0, gWidth, gHeight);
 }
 
