@@ -2,7 +2,7 @@
 * @Author: ocean
 * @Date:   2015-06-11 14:10:49
 * @Last Modified by:   ocean
-* @Last Modified time: 2015-06-24 15:17:49
+* @Last Modified time: 2015-06-24 15:48:21
 */
 
 'use strict';
@@ -34,6 +34,8 @@ moneyObj.prototype.update = function(){
 		if(Math.abs(this.top) > this.y + 100){
 			this.top = parseInt(gHeight - this.y + 30);
 			switchy = false;
+			scoreNum++;
+			console.log(scoreNum);
 		}
 	}
 }
@@ -46,8 +48,8 @@ moneyObj.prototype.draw = function(){
 
 function drawMoney(){
 	// for(var i = 0; i < num; i++){
-		money[0].update();
-		money[0].draw();
+		money.update();
+		money.draw();
 	// }
 }
 

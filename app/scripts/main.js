@@ -20,8 +20,11 @@ var timer = 0,
 	lastTime,
 	deltaTime;
 
-var money = [];
-var num = 10;
+var money;
+// var money = [];
+// var num = 10;
+
+var scoreNum = 0;
 
 function init(){
 	canvas = document.querySelector('#canvas');
@@ -47,10 +50,10 @@ function init(){
 	$(document).on('touchend', function(e){touchendfn(e)});
 
 	moneyBagPic.onload = function(){
-		for(var i = 0; i < num; i++){
-			money.push(new moneyObj());
-			money[i].init();
-		}
+		// for(var i = 0; i < num; i++){
+			money = new moneyObj();
+			money.init();
+		// }
 
 		lastTime = Date.now();
 		gameLoop();
