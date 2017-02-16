@@ -1,0 +1,25 @@
+{
+  "name": "mvvm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack-dev-server --port 9090 --inline --hot --content-base ./app --host 0.0.0.0",
+    "build": "webpack --config webpack.prod.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oceandeng/mvvm.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oceandeng/mvvm/issues"
+  },
+  "homepage": "https://github.com/oceandeng/mvvm#readme",
+  "devDependencies": {
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.3.0"
+  }
+}
