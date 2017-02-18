@@ -2,7 +2,7 @@
 * @Author: denghaiyang
 * @Date:   2017-02-14 17:27:41
 * @Last Modified by:   ocean_deng
-* @Last Modified time: 2017-02-16 11:01:57
+* @Last Modified time: 2017-02-16 17:04:06
 */
 
 'use strict';
@@ -155,6 +155,7 @@ var compileUtil = {
     }
 }
 
+// commond 模式
 var updater = {
     textUpdater: function(node, value){
         node.textContent = typeof value == 'undefined' ? '' : value
