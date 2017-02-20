@@ -1,13 +1,8 @@
 /*
 * @Author: denghaiyang
 * @Date:   2017-02-14 16:04:19
-<<<<<<< HEAD
 * @Last Modified by:   denghaiyang
-* @Last Modified time: 2017-02-17 16:24:18
-=======
-* @Last Modified by:   ocean_deng
-* @Last Modified time: 2017-02-16 14:58:31
->>>>>>> 6626778f698f034e4328aaf3de6657f0969fc9a9
+* @Last Modified time: 2017-02-20 15:29:36
 */
 
 'use strict';
