@@ -14,18 +14,26 @@
 		<input type="text" v-model="word">
 		<div>{{word}}</div>
 		<button v-on:click='sayHi'>changea model</button>
+		
+		<br>
+		<input type="text" v-model="obj.a" name="" value="">
+		<div>{{obj.a}}</div>
+
 	</div>
 
 	<script src="scripts/observer.js"></script>
 	<script src="scripts/watcher.js"></script>
 	<script src="scripts/compile.js"></script>
 	<script src="scripts/mvvm.js"></script>
-	
+
 	<script>
 		var vm = new MVVM({
 			el: '#mvvm-app',
 			data: {
-				word: 'hello'
+				word: 'hello',
+				obj: {
+					a: 1
+				}
 			},
 			methods: {
 				sayHi: function(){
