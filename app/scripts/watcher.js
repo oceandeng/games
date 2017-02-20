@@ -2,7 +2,7 @@
 * @Author: denghaiyang
 * @Date:   2017-02-14 17:23:06
 * @Last Modified by:   denghaiyang
-* @Last Modified time: 2017-02-17 16:04:30
+* @Last Modified time: 2017-02-20 14:22:56
 */
 
 'use strict';
@@ -43,7 +43,7 @@ Watcher.prototype = {
     getVMVal: function(){
     	var exp = this.exp.split('.')
     	var val = this.vm._data
-    	exp.forEach(function(k){
+    	exp.=(function(k){
     		val = val[k]
     	})
     	return val
